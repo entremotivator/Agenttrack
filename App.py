@@ -26,11 +26,8 @@ metrics = [
 ]
 
 # Generate Random Demo Data
-data = {agent: {metric: (randint(10, 500) if "Response Time" not in metric and "Ratings" not in metric \
+data = {agent: {metric: (randint(10, 500) if "Response Time" not in metric and "Ratings" not in metric 
                          else round(uniform(1, 100), 2)) for metric in metrics} for agent in agents}
-
-# Color Palette for Containers
-colors = ["#eaf4ff", "#f0f9e8", "#fff5e6", "#fdeef0"]
 
 # Dashboard Layout
 st.subheader("🗄 Individual Agent Metrics")
@@ -43,7 +40,6 @@ for i in range(rows):
         if idx >= len(agents):
             break
         agent = agents[idx]
-        color = colors[idx % len(colors)]  # Rotate through colors
         with col:
             with stylable_container(
                 key=f"container_{agent}",
@@ -52,7 +48,7 @@ for i in range(rows):
                         border: 2px solid #f0f2f6;
                         border-radius: 10px;
                         padding: 20px;
-                        background-color: {color};
+                        background-color: #ff0000;
                         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
                     }}
                 """
@@ -69,13 +65,13 @@ with stylable_container(
             border: 2px solid #f0f2f6;
             border-radius: 10px;
             padding: 20px;
-            background-color: #eaf4ff;
+            background-color: #ff0000;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
     """
 ):
     st.subheader("📊 Overall Metrics Summary")
-    total_metrics = {metric: (sum(agent_data[metric] for agent_data in data.values()) if "Response Time" not in metric and "Ratings" not in metric \
+    total_metrics = {metric: (sum(agent_data[metric] for agent_data in data.values()) if "Response Time" not in metric and "Ratings" not in metric 
                                else round(sum(agent_data[metric] for agent_data in data.values()) / len(data), 2)) for metric in metrics}
     cols = st.columns(3)  # Display summary metrics in columns
     for i, (metric, total) in enumerate(total_metrics.items()):
@@ -90,7 +86,7 @@ with stylable_container(
             border: 2px solid #f0f2f6;
             border-radius: 10px;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: #ff0000;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
     """
@@ -108,7 +104,7 @@ with stylable_container(
             border: 2px solid #f0f2f6;
             border-radius: 10px;
             padding: 20px;
-            background-color: #fff5e6;
+            background-color: #ff0000;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
     """
